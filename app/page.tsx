@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [message, setMessage] = useState();
-  const [posts, setPosts] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,14 +12,7 @@ export default function Home() {
       setMessage(message);
     };
 
-    const fetchPosts = async () => {
-      const res = await fetch("/api/posts");
-      const data = await res.json();
-      setPosts(data);
-    };
-
     fetchData();
-    fetchPosts();
   }, []);
 
   if (!message) return <p>Loading...</p>;

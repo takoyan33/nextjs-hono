@@ -3,7 +3,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [posts, setPosts] = useState();
+  interface Post {
+    id: number;
+    title: string;
+    completed: boolean;
+  }
+
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,7 +24,7 @@ export default function Home() {
   return (
     <div>
       <h2>投稿一覧</h2>
-      {posts?.map((post: any) => (
+      {posts?.map((post) => (
         <li key={post.id}>
           <h2>{post.title}</h2>
           <p>Completed: {post.completed ? "Yes" : "No"}</p>

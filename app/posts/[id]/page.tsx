@@ -15,7 +15,13 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
-  const [posts, setPosts] = useState<any[]>([]);
+  interface Post {
+    id: number;
+    title: string;
+    completed: boolean;
+  }
+
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -36,7 +42,7 @@ export default function Home() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {posts?.map((post: any) => (
+          {posts?.map((post) => (
             <Card
               key={post.id}
               className="shadow-md hover:shadow-lg transition-shadow duration-300"
