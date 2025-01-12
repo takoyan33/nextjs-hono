@@ -15,7 +15,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 min-h-screen">
       <Button variant="outline" onClick={() => router.back()} className="mb-4">
         戻る
       </Button>

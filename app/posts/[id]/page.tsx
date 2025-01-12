@@ -1,48 +1,48 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { PlusCircle } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import {
+//   Card,
+//   CardHeader,
+//   CardTitle,
+//   CardContent,
+//   CardFooter,
+// } from "@/components/ui/card";
+// import Link from "next/link";
+// import { useEffect, useState } from "react";
+// import { PlusCircle } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
-  interface Post {
-    id: number;
-    title: string;
-    completed: boolean;
-  }
+  // interface Post {
+  //   id: number;
+  //   title: string;
+  //   completed: boolean;
+  // }
 
-  const [posts, setPosts] = useState<Post[]>([]);
+  // const [post, setPost] = useState<Post>();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await fetch("/api/posts");
-      const data = await res.json();
-      setPosts(data);
-    };
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const res = await fetch("/api/post");
+  //     const data = await res.json();
+  //     setPost(data);
+  //   };
 
-    fetchPosts();
-  }, []);
+  //   fetchPosts();
+  // }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-center text-primary mb-8">
-          ブログ投稿一覧
+          投稿詳細
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {posts?.map((post) => (
+          {/* 
             <Card
               key={post.id}
               className="shadow-md hover:shadow-lg transition-shadow duration-300"
@@ -64,16 +64,7 @@ export default function Home() {
                 </Link>
               </CardFooter>
             </Card>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Link href="/posts/new">
-            <Button className="px-6 py-3 text-lg" size="lg">
-              <PlusCircle className="mr-2 h-5 w-5" />
-              新規投稿
-            </Button>
-          </Link>
+           */}
         </div>
       </main>
       <Footer />
