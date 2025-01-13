@@ -59,7 +59,7 @@ export default function Home() {
               </p>
             </CardContent>
             <CardFooter>
-              <Link href={`/posts/edit`}>
+              <Link href={`/posts/edit/${id}`}>
                 <Button variant="outline">編集</Button>
               </Link>
               <Link href={`/posts/delete`}>

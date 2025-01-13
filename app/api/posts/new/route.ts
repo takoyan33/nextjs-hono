@@ -5,15 +5,7 @@ export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 
-const todoList = [
-  { id: "1", title: "Learning Hono", completed: false },
-  { id: "2", title: "Watch the movie", completed: true },
-  { id: "3", title: "Buy milk", completed: false },
-];
-
-app.get("/posts/:id", (c) => {
-  const postId = c.req.param("id");
-  const post = todoList.find((todo) => todo.id == postId);
+app.get("/posts/new", (c) => {
   if (post) {
     return c.json(post);
   } else {

@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js + Hono
 
-## Getting Started
+<!-- ![image](/public/images/portfolio/portfolio_top3.png) -->
 
-First, run the development server:
+## 目次
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [システムの特徴](#system-feature)
+- [使用技術について](#technology-used)
+- [ディレクトリ構成](#directory-structure)
+- [ブランチについて](#technology-used)
+
+-[URL](https://to-you-design.vercel.app/)
+
+<h2 id="system-feature">システムの特徴</h2>
+ これは、Next.jsとHonoを学ぶために作成したサイトです。
+
+<h2 id="technology-used">使用言語、環境</h2>
+
+### node バージョン
+
+- node v18.18.0
+- npm v9.8.1
+
+### フロントエンド
+
+- [Next.js](https://nextjs.org/) 15.1.3
+- [React](https://ja.reactjs.org/) 19.2.0
+- [typescript](https://www.typescriptlang.org/) 5
+
+### バックエンド
+
+- [Hono](https://hono.dev/)
+
+### リンター
+
+- [Biome](https://biomejs.dev/ja/)
+
+### テスト
+
+- [Vitest](https://vitejs.dev/guide/features.html) 2.1.1
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) 10.4.0
+
+### ホスティング
+
+- [Vercel](https://vercel.com/)
+
+<h2 id="technology-used">ディレクトリ構成</h2>
+
+```
+.
+├── api             #API
+├── app
+│   ├── components #コンポーネントの記載
+│   ├── posts      #post関連のページ
+├── public          #画像
+├── styles          #cssの設定
+├── hooks           #カスタムフック
+├── utils           #共通関数
+├── types           #型定義
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h2 id="technology-used">ブランチについて</h2>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+develop ブランチが開発環境で main が本番環境です。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| ブランチ名 | 役割                       | 派生元  | マージ先 |
+| ---------- | -------------------------- | ------- | -------- |
+| main       | 公開するものを置くブランチ |         |          |
+| develop    | 開発中のものを置くブランチ | main    | main     |
+| feature-\* | 新機能開発中に使うブランチ | develop | develop  |
 
-## Learn More
+# Author
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 作成者 阿部 舜平
+- E-mail harrier2070@gmail.com
