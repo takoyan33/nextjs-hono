@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,13 +11,13 @@ import {
 } from "@/components/ui/card";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <div className="container mx-auto p-4 min-h-screen">
-      <Button variant="outline" onClick={() => router.back()} className="mb-4">
-        戻る
-      </Button>
+      <Link href={"/posts/"}>
+        <Button variant="outline" className="mb-4">
+          戻る
+        </Button>
+      </Link>
       <Card className="w-full max-w-md mx-auto">
         <CardHeader>
           <CardTitle className="text-center">新規投稿</CardTitle>

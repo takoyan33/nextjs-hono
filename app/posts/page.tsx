@@ -54,7 +54,7 @@ export default function Home() {
               </CardContent>
               <CardFooter>
                 <Link href={`/posts/${post.id}`}>
-                  <Button variant="outline">詳細を見る</Button>
+                  <Button variant="outline">詳細</Button>
                 </Link>
                 <Link href={`/posts/edit`}>
                   <Button variant="outline">編集</Button>
