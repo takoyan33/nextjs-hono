@@ -15,14 +15,17 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const params = useParams();
-  const id: string | undefined = Array.isArray(params?.id) ? params.id[0] : params?.id;
-  // interface Post {
-  //   id: number;
-  //   title: string;
-  //   completed: boolean;
-  // }
+  const id: string | undefined = Array.isArray(params?.id)
+    ? params.id[0]
+    : params?.id;
 
-  const [post, setPost] = useState();
+  interface Post {
+    id: number;
+    title: string;
+    completed: boolean;
+  }
+
+  const [post, setPost] = useState<Post | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
