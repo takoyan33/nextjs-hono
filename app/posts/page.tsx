@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,27 +9,41 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { PlusCircle } from "lucide-react";
+import { db } from "@/lib/db";
 
-export default function Home() {
-  interface Post {
-    id: number;
-    title: string;
-    completed: boolean;
-  }
+const getTodos = async () => {
+  const todos = await db.todo.findMany({
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
+  return todos;
+};
 
-  const [posts, setPosts] = useState<Post[]>([]);
+export default async function Home() {
+  const todos = await getTodos();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await fetch("/api/posts");
-      const data = await res.json();
-      setPosts(data);
-    };
+  console.log(todos);
 
-    fetchPosts();
-  }, []);
+  // interface Post {
+  //   id: number;
+  //   title: string;
+  //   completed: boolean;
+  // }
+
+  // const [posts, setPosts] = useState<Post[]>([]);
+
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const res = await fetch("/api/posts");
+  //     const data = await res.json();
+  //     setPosts(data);
+  //   };
+
+  //   fetchPosts();
+  // }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -39,26 +53,28 @@ export default function Home() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {posts?.map((post) => (
-            <Card
-              key={post.id}
-              className="shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <CardHeader>
-                <CardTitle>{post.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600">
-                  状態: {post.completed ? "完了" : "未完了"}
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Link href={`/posts/${post.id}`}>
-                  <Button variant="outline">詳細</Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
+          {todos?.map(
+            (todo: { id: number; title: string; completed: boolean }) => (
+              <Card
+                key={todo.id}
+                className="shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <CardHeader>
+                  <CardTitle>{todo.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600">
+                    状態: {todo.completed ? "完了" : "未完了"}
+                  </p>
+                </CardContent>
+                <CardFooter>
+                  <Link href={`/posts/${todo.id}`}>
+                    <Button variant="outline">詳細</Button>
+                  </Link>
+                </CardFooter>
+              </Card>
+            )
+          )}
         </div>
 
         <div className="text-center">

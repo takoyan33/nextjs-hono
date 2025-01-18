@@ -1,14 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { TodoForm } from "@/app/components/todo-form";
 
 export default function Home() {
   return (
@@ -18,7 +12,8 @@ export default function Home() {
           戻る
         </Button>
       </Link>
-      <Card className="w-full max-w-md mx-auto">
+      <TodoForm />
+      {/* <Card className="w-full max-w-md mx-auto">
         <CardHeader>
           <CardTitle className="text-center">新規投稿</CardTitle>
         </CardHeader>
@@ -36,7 +31,7 @@ export default function Home() {
             投稿
           </Button>
         </CardFooter>
-      </Card>
+      </Card> */}
     </div>
   );
 }
