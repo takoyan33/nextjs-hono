@@ -10,8 +10,7 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("postgresql://nextjs-hono_owner:F2WZMbnKDTw9@ep-white-surf-a199j6qr-pooler.ap-southeast-1.aws.neon.tech/nextjs-hono?sslmode=require")
-  //url  	    = env("DATABASE_URL")
+  url  	    = env("DATABASE_URL")
   // uncomment next line if you use Prisma <5.10
   // directUrl = env("DATABASE_URL_UNPOOLED")
 }
