@@ -7,11 +7,11 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 interface TodoActionsProps {
-  todoId: string | undefined;
+  todoId: string;
   isCompleted: boolean | undefined;
 }
-
-export const TodoActions = ({ todoId, isCompleted }: TodoActionsProps) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const TodoActions = ({ todoId }: TodoActionsProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const onDelete = () => {

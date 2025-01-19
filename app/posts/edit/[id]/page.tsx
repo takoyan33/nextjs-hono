@@ -36,7 +36,7 @@ export default function Home() {
       }
     };
     fetchPosts();
-  }, []);
+  }, [id]);
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <Link href={"/posts/"}>

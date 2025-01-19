@@ -14,7 +14,7 @@ import Link from "next/link";
 // import { PlusCircle } from "lucide-react";
 import { db } from "@/lib/db";
 
-const getTodo = async (id: any) => {
+const getTodo = async (id: string | undefined) => {
   const todo = await db.todo.findUnique({
     where: {
       id: id, // id で検索
@@ -23,8 +23,8 @@ const getTodo = async (id: any) => {
   return todo;
 };
 
-export default async function Home({ params }: { params: { id: string } }) {
-  console.log(params);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function Home({ params }: any) {
   const id: string | undefined = Array.isArray(params?.id)
     ? params.id[0]
     : params?.id;
@@ -69,7 +69,7 @@ export default async function Home({ params }: { params: { id: string } }) {
               </p>
             </CardContent>
             <CardFooter>
-              <TodoActions todoId={id} isCompleted={todo?.completed} />
+              <TodoActions todoId={id || ""} isCompleted={todo?.completed} />
               <Link href={`/posts/edit/${id}`}>
                 <Button variant="outline">編集</Button>
               </Link>
