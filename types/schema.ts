@@ -12,3 +12,11 @@ export const DeleteTodoSchema = z.object({
     invalid_type_error: "id is required",
   }),
 });
+
+export const UpdateTodoSchema = z.object({
+  id: z.string({}),
+  isCompleted: z.boolean({
+    required_error: "id is required",
+    invalid_type_error: "id is required",
+  }),
+});

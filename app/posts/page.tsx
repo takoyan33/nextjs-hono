@@ -54,7 +54,7 @@ export default async function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {todos?.map(
-            (todo: { id: number; title: string; completed: boolean }) => (
+            (todo: { id: number; title: string; isCompleted: boolean }) => (
               <Card
                 key={todo.id}
                 className="shadow-md hover:shadow-lg transition-shadow duration-300"
@@ -64,7 +64,7 @@ export default async function Home() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-gray-600">
-                    状態: {todo.completed ? "完了" : "未完了"}
+                    状態: {todo.isCompleted ? "完了" : "未完了"}
                   </p>
                 </CardContent>
                 <CardFooter>

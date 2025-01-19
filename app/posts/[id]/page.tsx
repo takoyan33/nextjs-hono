@@ -25,10 +25,8 @@ const getTodo = async (id: string | undefined) => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Home({ params }: any) {
-  const id: string | undefined = Array.isArray(params?.id)
-    ? params.id[0]
-    : params?.id;
-  const todo = await getTodo(id);
+  const { id } = await params;
+  const todo = await getTodo(id || "");
   // interface Post {
   //   id: number;
   //   title: string;
@@ -65,11 +63,11 @@ export default async function Home({ params }: any) {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600">
-                状態: {todo?.completed ? "完了" : "未完了"}
+                状態: {todo?.isCompleted ? "完了" : "未完了"}
               </p>
             </CardContent>
             <CardFooter>
-              <TodoActions todoId={id || ""} isCompleted={todo?.completed} />
+              <TodoActions todoId={id || ""} isCompleted={todo?.isCompleted} />
               <Link href={`/posts/edit/${id}`}>
                 <Button variant="outline">編集</Button>
               </Link>

@@ -6,7 +6,7 @@ export default function Home() {
   interface Post {
     id: number;
     title: string;
-    completed: boolean;
+    isCompleted: boolean;
   }
 
   const [posts, setPosts] = useState<Post[]>([]);
@@ -27,7 +27,7 @@ export default function Home() {
       {posts?.map((post) => (
         <li key={post.id}>
           <h2>{post.title}</h2>
-          <p>Completed: {post.completed ? "Yes" : "No"}</p>
+          <p>Completed: {post.isCompleted ? "Yes" : "No"}</p>
         </li>
       ))}
       <Link href="/posts/new">新規投稿</Link>
