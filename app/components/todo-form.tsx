@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTransition } from "react";
-import { CreateTodo } from "@/actions/todo-create";
+import { createTodo } from "@/actions/todo-create";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -30,13 +30,17 @@ export const TodoForm = () => {
 
   const onSubmit = (values: z.infer<typeof CreateTodoSchema>) => {
     startTransition(() => {
-      CreateTodo(values)
+      createTodo(values)
         .then((data) => {
           toast.success(data.success);
           router.push("/posts");
         })
         .catch((data) => {
-          toast.error(data.error);
+          if (data.error) {
+            toast.error(data.error);
+          } else {
+            toast.error("失敗");
+          }
         });
     });
   };
@@ -45,7 +49,7 @@ export const TodoForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex items-center gap-x-1 w-full max-w-xl"
+        className="flex gap-x-1 w-full max-w-xl"
       >
         <FormField
           control={form.control}

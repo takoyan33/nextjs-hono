@@ -29,7 +29,12 @@
 
 ### バックエンド
 
-- [Hono](https://hono.dev/)
+- [Prisma](https://www.prisma.io/)
+
+### データベース
+
+- [Neon](https://console.neon.tech/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ### リンター
 
@@ -43,6 +48,11 @@
 ### ホスティング
 
 - [Vercel](https://vercel.com/)
+
+### その他
+
+- [React Hook Form](https://www.react-hook-form.com/)
+- [zod](https://zod.dev/)
 
 <h2 id="technology-used">ディレクトリ構成</h2>
 

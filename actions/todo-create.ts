@@ -4,7 +4,7 @@ import { CreateTodoSchema } from "@/types/schema";
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-export const CreateTodo = async (values: z.infer<typeof CreateTodoSchema>) => {
+export const createTodo = async (values: z.infer<typeof CreateTodoSchema>) => {
   const validatedFields = CreateTodoSchema.safeParse(values);
 
   if (!validatedFields.success) {
