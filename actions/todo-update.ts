@@ -16,8 +16,6 @@ export const updateTodo = async (values: z.infer<typeof UpdateTodoSchema>) => {
 
   const { id, isCompleted } = validatedFields.data;
 
-  console.log(isCompleted)
-
   await db.todo.update({
     where: {
       id,

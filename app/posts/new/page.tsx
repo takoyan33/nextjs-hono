@@ -13,25 +13,6 @@ export default function Home() {
         </Button>
       </Link>
       <TodoForm />
-      {/* <Card className="w-full max-w-md mx-auto">
-        <CardHeader>
-          <CardTitle className="text-center">新規投稿</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Label htmlFor="title">タイトル</Label>
-          <Input
-            id="title"
-            type="text"
-            placeholder="タイトルを入力してください"
-            required
-          />
-        </CardContent>
-        <CardFooter>
-          <Button type="submit" className="w-full">
-            投稿
-          </Button>
-        </CardFooter>
-      </Card> */}
     </div>
   );
 }

@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { useTransition } from "react";
 import { deleteTodo } from "@/actions/todo-delete";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { updateTodo } from "@/actions/todo-update";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/hooks/use-toast";
 
 interface TodoActionsProps {
   todoId: string;
@@ -13,22 +14,26 @@ interface TodoActionsProps {
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const TodoActions = ({ todoId, isCompleted }: TodoActionsProps) => {
-  console.log(isCompleted);
+  const { toast } = useToast();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const onUpdate = () => {
     startTransition(() => {
       updateTodo({ id: todoId, isCompleted: isCompleted })
-        .then((data) => {
-          toast.success(data.success);
-          router.push("/posts");
+        .then(() => {
+          toast({
+            title: "編集成功",
+            description: "投稿を編集しました",
+          });
         })
         .catch((data) => {
           if (data.error) {
-            alert(data.error);
-          } else {
-            alert(data.error);
+            toast({
+              title: "編集失敗",
+              description: data.error,
+              variant: "destructive",
+            });
           }
         });
     });
@@ -37,15 +42,20 @@ export const TodoActions = ({ todoId, isCompleted }: TodoActionsProps) => {
   const onDelete = () => {
     startTransition(() => {
       deleteTodo({ id: todoId })
-        .then((data) => {
-          toast.success(data.success);
+        .then(() => {
+          toast({
+            title: "削除成功",
+            description: "投稿を削除しました",
+          });
           router.push("/posts");
         })
         .catch((data) => {
           if (data.error) {
-            toast.error(data.error);
-          } else {
-            toast.error("失敗");
+            toast({
+              title: "削除失敗",
+              description: data.error,
+              variant: "destructive",
+            });
           }
         });
     });
@@ -58,6 +68,7 @@ export const TodoActions = ({ todoId, isCompleted }: TodoActionsProps) => {
       <Button variant="outline" disabled={isPending} onClick={onDelete}>
         削除
       </Button>
+      <Toaster />
     </div>
   );
 };

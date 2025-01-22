@@ -25,26 +25,6 @@ const getTodos = async () => {
 export default async function Home() {
   const todos = await getTodos();
 
-  console.log(todos);
-
-  // interface Post {
-  //   id: number;
-  //   title: string;
-  //   completed: boolean;
-  // }
-
-  // const [posts, setPosts] = useState<Post[]>([]);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await fetch("/api/posts");
-  //     const data = await res.json();
-  //     setPosts(data);
-  //   };
-
-  //   fetchPosts();
-  // }, []);
-
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow container mx-auto px-4 py-8">

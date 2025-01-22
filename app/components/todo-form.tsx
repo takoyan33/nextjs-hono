@@ -15,10 +15,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTransition } from "react";
 import { createTodo } from "@/actions/todo-create";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 export const TodoForm = () => {
+  const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<z.infer<typeof CreateTodoSchema>>({
@@ -31,16 +33,21 @@ export const TodoForm = () => {
   const onSubmit = (values: z.infer<typeof CreateTodoSchema>) => {
     startTransition(() => {
       createTodo(values)
-        .then((data) => {
-          toast.success(data.success);
-          router.push("/posts");
+        .then(() => {
+          toast({
+            title: "投稿成功",
+            description: "投稿しました",
+          });
+          setTimeout(() => {
+            router.push("/posts");
+          }, 1500);
         })
         .catch((data) => {
-          if (data.error) {
-            toast.error(data.error);
-          } else {
-            toast.error("失敗");
-          }
+          toast({
+            title: "削除失敗",
+            description: data.error,
+            variant: "destructive",
+          });
         });
     });
   };
@@ -74,6 +81,7 @@ export const TodoForm = () => {
           投稿
         </Button>
       </form>
+      <Toaster />
     </Form>
   );
 };
