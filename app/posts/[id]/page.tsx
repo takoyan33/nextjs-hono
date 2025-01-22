@@ -10,9 +10,17 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import Link from "next/link";
-// import { useEffect, useState } from "react";
-// import { PlusCircle } from "lucide-react";
 import { db } from "@/lib/db";
+import { Slash } from "lucide-react";
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 const getTodo = async (id: string | undefined) => {
   const todo = await db.todo.findUnique({
@@ -27,24 +35,6 @@ const getTodo = async (id: string | undefined) => {
 export default async function Home({ params }: any) {
   const { id } = await params;
   const todo = await getTodo(id || "");
-  // interface Post {
-  //   id: number;
-  //   title: string;
-  //   completed: boolean;
-  // }
-
-  // const [post, setPost] = useState<Post | null>(null);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     if (id) {
-  //       const res = await fetch(`/api/posts/${id}`);
-  //       const data = await res.json();
-  //       setPost(data);
-  //     }
-  //   };
-  //   fetchPosts();
-  // }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -52,9 +42,28 @@ export default async function Home({ params }: any) {
         <Link href={"/posts/"}>
           <Button variant="outline">戻る</Button>
         </Link>
-        <h1 className="text-3xl font-bold text-center text-primary mb-8">
+        <Breadcrumb className="mt-8">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator>
+              <Slash />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/posts">投稿一覧</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator>
+              <Slash />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>{todo?.title}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <h2 className="text-3xl font-bold text-center text-primary mb-8">
           投稿詳細
-        </h1>
+        </h2>
 
         <div className="grid gap-6 mb-8">
           <Card className="shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -68,12 +77,6 @@ export default async function Home({ params }: any) {
             </CardContent>
             <CardFooter>
               <TodoActions todoId={id || ""} isCompleted={todo?.isCompleted} />
-              <Link href={`/posts/edit/${id}`}>
-                <Button variant="outline">編集</Button>
-              </Link>
-              {/* <Link href={`/posts/delete`}>
-                <Button variant="outline">削除</Button>
-              </Link> */}
             </CardFooter>
           </Card>
         </div>

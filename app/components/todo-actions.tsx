@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { updateTodo } from "@/actions/todo-update";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
+import Link from "next/link";
 
 interface TodoActionsProps {
   todoId: string;
@@ -62,12 +63,17 @@ export const TodoActions = ({ todoId, isCompleted }: TodoActionsProps) => {
   };
   return (
     <div className="flex item-center gap-x-2">
-      <Button variant="outline" disabled={isPending} onClick={onUpdate}>
+      <Button variant="secondary" disabled={isPending} onClick={onUpdate}>
         {isCompleted ? "未完了" : "完了"}
       </Button>
-      <Button variant="outline" disabled={isPending} onClick={onDelete}>
+      <Button variant="destructive" disabled={isPending} onClick={onDelete}>
         削除
       </Button>
+      <Link href={`/posts/edit/${todoId}`}>
+        <Button disabled={isPending}>
+          編集
+        </Button>
+      </Link>
       <Toaster />
     </div>
   );
