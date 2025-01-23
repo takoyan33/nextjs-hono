@@ -25,6 +25,11 @@ export default function Home() {
             ログイン
           </Button>
         </Link>
+        <Link href="/protected/">
+          <Button className="px-6 py-3 text-lg" size="lg" variant="outline">
+            protected page
+          </Button>
+        </Link>
       </div>
     </main>
   );
