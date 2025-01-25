@@ -5,6 +5,7 @@ import { Database, Home, Image, User, ShieldCheck, Copy } from "lucide-react";
 import { MainSidebarItem } from "@/components/main-sidebar-item";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/store/use-modal-store";
+import { useEventListener } from "usehooks-ts";
 
 export type MenuItem = {
   id: string;
@@ -54,6 +55,16 @@ const menuItems = [
 
 export const MainSidebar = () => {
   const { onOpen } = useModal();
+
+  const modalOpen = (e: KeyboardEvent) => {
+    // ctrl + cを押した場合modal open
+    if (e.key === "c" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      onOpen();
+    }
+  };
+
+  useEventListener("keydown", modalOpen);
 
   return (
     <nav className="w-full flex py-4 px-4 flex-col items-center">

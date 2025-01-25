@@ -1,17 +1,14 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
 import { UserProfileModal } from "@/components/modals/user-profile-modal";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useIsClient } from "usehooks-ts";
 
 export const ModalsProvider = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const isClient = useIsClient();
   const { user } = useUser();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
+  if (!isClient) {
     return null;
   }
 
