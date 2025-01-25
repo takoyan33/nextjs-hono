@@ -1,6 +1,7 @@
 import { UserButton, UserProfile } from "@clerk/nextjs";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
+import { dark } from "@clerk/themes";
 
 const ProtectedPage = async () => {
   const { userId } = await auth();
@@ -8,10 +9,10 @@ const ProtectedPage = async () => {
 
   return (
     <div className="flex flex-col p-10">
-      <div className="flex items-center gap-x-2">
+      {/* <div className="flex items-center gap-x-2">
         <UserButton />
         <p>User ID: {userId}</p>
-      </div>
+      </div> */}
       <ul className="flex flex-col p-6">
         <li>
           User Name: {user?.firstName} {user?.lastName}
@@ -27,7 +28,16 @@ const ProtectedPage = async () => {
           />
         </li>
       </ul>
-      <UserProfile />
+      <UserProfile
+        appearance={{
+          baseTheme: dark,
+          elements: {
+            cardBox: {
+              // boxShadow: "none",
+            },
+          },
+        }}
+      />
     </div>
   );
 };
