@@ -1,6 +1,10 @@
+"use client";
+
 import { Separator } from "@/components/ui/separator";
-import { Database, Home, Image, User, ShieldCheck } from "lucide-react";
+import { Database, Home, Image, User, ShieldCheck, Copy } from "lucide-react";
 import { MainSidebarItem } from "@/components/main-sidebar-item";
+import { Button } from "@/components/ui/button";
+import { useModal } from "@/store/use-modal-store";
 
 export type MenuItem = {
   id: string;
@@ -49,6 +53,8 @@ const menuItems = [
 ];
 
 export const MainSidebar = () => {
+  const { onOpen } = useModal();
+
   return (
     <nav className="w-full flex py-4 px-4 flex-col items-center">
       <div className="w-full">
@@ -64,6 +70,17 @@ export const MainSidebar = () => {
               <span className="group-hover:text-white">Home</span>
             </li>
           </ul>
+        </div>
+        <Separator className="bg-slate-400 mt-2" />
+        <div className="w-full py-4">
+          <Button
+            onClick={onOpen}
+            className="w-full flex items-center gap-x-2"
+            variant="primary"
+          >
+            <Copy className="h-4 w-4" />
+            Copy Email
+          </Button>
         </div>
       </div>
     </nav>

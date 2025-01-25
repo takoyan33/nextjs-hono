@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MainNavbar } from "@/components/main-navbar";
 import { MainSidebar } from "@/components/main-sidebar";
+import { ModalsProvider } from "@/components/providers/modals-provider";
 
 export const metadata: Metadata = {
   title: "Next.js + Prisma",
@@ -27,6 +28,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ClerkProvider>
+            <ModalsProvider />
             <MainNavbar />
             <main className="flex h-full w-full relative overflow-hidden overflow-y-auto">
               <div className="w-[200px] shrink-0 hidden lg:block">
