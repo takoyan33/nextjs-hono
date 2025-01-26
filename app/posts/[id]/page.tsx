@@ -37,7 +37,7 @@ export default async function Home({ params }: any) {
   const todo = await getTodo(id || "");
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen flex-1">
       <main className="flex-grow container mx-auto px-4 py-8">
         <Link href={"/posts/"}>
           <Button variant="outline">戻る</Button>

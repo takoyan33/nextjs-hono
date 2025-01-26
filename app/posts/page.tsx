@@ -23,7 +23,7 @@ export default async function Home() {
   const todos = await getTodos();
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen flex-1">
       <main className="flex-grow container mx-auto px-4 py-8">
         <h2 className="text-3xl font-bold text-center text-primary mb-8">
           ブログ投稿一覧
