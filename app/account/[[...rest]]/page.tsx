@@ -1,7 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { UserProfileModal } from "@/components/modals/user-profile-modal";
-import { OrgNavbar } from "@/components/org-navbar";
 import { auth } from "@clerk/nextjs/server";
 import { getTodoByOrgId } from "@/service/todo-get";
 import {
@@ -15,6 +14,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sidebar } from "@/app/account/_components/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { OrgNavbar } from "@/components/org-navbar";
 
 const ProtectedPage = async () => {
   const { orgId } = await auth();
