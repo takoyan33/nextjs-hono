@@ -14,7 +14,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sidebar } from "@/app/account/_components/sidebar";
 import { Separator } from "@/components/ui/separator";
-import { OrgNavbar } from "@/components/org-navbar";
+import { OrgNavbar } from "../_components/org-navbar";
 
 const ProtectedPage = async () => {
   const { orgId } = await auth();
