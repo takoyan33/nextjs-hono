@@ -10,6 +10,7 @@ import {
   FormField,
   FormItem,
   FormMessage,
+  FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -56,7 +57,7 @@ export const TodoForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex gap-x-1 w-full max-w-xl"
+        className="gap-x-1 w-full max-w-xl m-auto"
       >
         <FormField
           control={form.control}
@@ -64,6 +65,7 @@ export const TodoForm = () => {
           render={({ field }) => {
             return (
               <FormItem className="w-full">
+                <FormLabel>todo名</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -77,9 +79,11 @@ export const TodoForm = () => {
             );
           }}
         />
-        <Button type="submit" disabled={isPending}>
-          投稿
-        </Button>
+        <div className="flex justify-center my-6">
+          <Button type="submit" disabled={isPending}>
+            投稿
+          </Button>
+        </div>
       </form>
       <Toaster />
     </Form>

@@ -9,12 +9,13 @@ const ProtectedPage = async () => {
   const user = await currentUser();
 
   return (
-    <div className="flex flex-col p-10">
+    <div className="flex flex-col p-0 lg:p-10">
       {/* <div className="flex items-center gap-x-2">
         <UserButton />
         <p>User ID: {userId}</p>
       </div> */}
-      <ul className="flex flex-col p-6">
+
+      <ul className="flex flex-col p-0 lg-p-6">
         <li>
           User Name: {user?.firstName} {user?.lastName}
         </li>
@@ -28,7 +29,7 @@ const ProtectedPage = async () => {
             alt="User Image"
           />
         </li>
-        <li>
+        <li className="my-4">
           <UserProfileModal
             email={user?.emailAddresses?.[0].emailAddress || ""}
           />

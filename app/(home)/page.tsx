@@ -8,7 +8,9 @@ export default function Home() {
       <h2 className="text-3xl font-bold text-center text-primary mb-6 gap-4">
         ブログ投稿一覧
       </h2>
-      <UserButton />
+      <div className="my-4">
+        <UserButton />
+      </div>
       <div className="flex items-center flex-col gap-4 lg:justify-center lg:gap-x-2 mb-2">
         <Link href="/posts/">
           <Button className="px-6 py-3 text-lg" size="lg">
