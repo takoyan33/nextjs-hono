@@ -6,19 +6,19 @@ export const runtime = "edge";
 const app = new Hono().basePath("/api");
 
 const todoList = [
-  { id: "1", title: "Learning Hono", completed: false },
-  { id: "2", title: "Watch the movie", completed: true },
-  { id: "3", title: "Buy milk", completed: false },
+	{ id: "1", title: "Learning Hono", completed: false },
+	{ id: "2", title: "Watch the movie", completed: true },
+	{ id: "3", title: "Buy milk", completed: false },
 ];
 
 app.get("/posts/:id", (c) => {
-  const postId = c.req.param("id");
-  const post = todoList.find((todo) => todo.id == postId);
-  if (post) {
-    return c.json(post);
-  } else {
-    return c.json({ message: "Post not found" }, 404); // Return a 404 if not found
-  }
+	const postId = c.req.param("id");
+	const post = todoList.find((todo) => todo.id === postId);
+	if (post) {
+		return c.json(post);
+	} else {
+		return c.json({ message: "Post not found" }, 404); // Return a 404 if not found
+	}
 });
 
 export const GET = handle(app);
