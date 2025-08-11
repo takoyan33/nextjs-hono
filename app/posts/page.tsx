@@ -22,6 +22,8 @@ const getTodos = async () => {
 export default async function Home() {
 	const todos = await getTodos();
 
+	console.log(todos);
+
 	return (
 		<div className="flex flex-col min-h-screen flex-1">
 			<main className="flex-grow container mx-auto px-4 py-8">

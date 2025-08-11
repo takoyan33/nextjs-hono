@@ -1,9 +1,9 @@
 "use server";
-import * as z from "zod";
-import { CreateTodoSchema } from "@/types/schema";
-import { db } from "@/lib/db";
-import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
+import * as z from "zod";
+import { db } from "@/lib/db";
+import { CreateTodoSchema } from "@/types/schema";
 
 export const createTodo = async (values: z.infer<typeof CreateTodoSchema>) => {
   const { userId, orgId } = await auth();

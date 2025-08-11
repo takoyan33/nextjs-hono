@@ -1,42 +1,21 @@
-"use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { TodoEditForm } from "@/app/components/todo-edit-form";
 import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { db } from "@/lib/db";
 
-export default function Home() {
-	interface Post {
-		id: number;
-		title: string;
-		completed: boolean;
-	}
-	const params = useParams();
-	const id: string | undefined = Array.isArray(params?.id)
-		? params.id[0]
-		: params?.id;
+const getTodo = async (id: string | undefined) => {
+	const todo = await db.todo.findUnique({
+		where: {
+			id: id, // id で検索
+		},
+	});
+	return todo;
+};
 
-	const [post, setPost] = useState<Post>();
+export default async function Home({ params }: any) {
+	const { id } = await params;
+	const todo = await getTodo(id || "");
 
-	useEffect(() => {
-		const fetchPosts = async () => {
-			if (id) {
-				const res = await fetch(`/api/posts/${id}`);
-				const data = await res.json();
-				setPost(data);
-			}
-		};
-		fetchPosts();
-	}, [id]);
 	return (
 		<div className="container mx-auto p-4 min-h-screen">
 			<Link href={"/posts/"}>
@@ -44,26 +23,7 @@ export default function Home() {
 					戻る
 				</Button>
 			</Link>
-			<Card className="w-full max-w-md mx-auto">
-				<CardHeader>
-					<CardTitle className="text-center">編集</CardTitle>
-				</CardHeader>
-				<CardContent>
-					<Label htmlFor="title">タイトル</Label>
-					<Input
-						id="title"
-						type="text"
-						placeholder="タイトルを入力してください"
-						defaultValue={post?.title}
-						required
-					/>
-				</CardContent>
-				<CardFooter>
-					<Button type="submit" className="w-full">
-						編集
-					</Button>
-				</CardFooter>
-			</Card>
+			<TodoEditForm todo={todo} />
 		</div>
 	);
 }
