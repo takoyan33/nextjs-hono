@@ -22,6 +22,7 @@ export const deleteTodo = async (values: z.infer<typeof DeleteTodoSchema>) => {
 		},
 	});
 
+	//Next.js のキャッシュを無効化して再フェッチ
 	revalidatePath("/posts");
 
 	return { success: "Todo Deleted!" };

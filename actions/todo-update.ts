@@ -25,6 +25,7 @@ export const updateTodo = async (values: z.infer<typeof UpdateTodoSchema>) => {
 		},
 	});
 
+	//Next.js のキャッシュを無効化して再フェッチ
 	revalidatePath("/posts");
 
 	return { success: "Todo Updated!" };
