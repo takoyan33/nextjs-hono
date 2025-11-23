@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    		"dev": "next dev --turbopack",
+    "dev": "next dev --turbopack",
 		"dev:mock": "NEXT_PUBLIC_API_MOCKING=enabled next dev --turbopack",
     "build": "prisma generate && prisma db push && next build",
     "start": "next start",

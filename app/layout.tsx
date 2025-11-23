@@ -23,26 +23,27 @@ export default function RootLayout({
 	return (
 		<html lang="ja" suppressHydrationWarning>
 			<body className="bg-white dark:bg-slate-700">
-				<MSWComponent />
-				<ThemeProvider
+				<MSWComponent>
+					<ThemeProvider
 
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
-					<ClerkProvider>
-						<ModalsProvider />
-						<MainNavbar />
-						<main className="flex h-full w-full relative overflow-hidden overflow-y-auto">
-							<div className="w-[200px] shrink-0 hidden lg:block">
-								<MainSidebar />
-							</div>
-							{children}
-						</main>
-						<Footer />
-					</ClerkProvider>
-				</ThemeProvider>
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<ClerkProvider>
+							<ModalsProvider />
+							<MainNavbar />
+							<main className="flex h-full w-full relative overflow-hidden overflow-y-auto">
+								<div className="w-[200px] shrink-0 hidden lg:block">
+									<MainSidebar />
+								</div>
+								{children}
+							</main>
+							<Footer />
+						</ClerkProvider>
+					</ThemeProvider>
+				</MSWComponent>
 			</body>
 		</html>
 	);

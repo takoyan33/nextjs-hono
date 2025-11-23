@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 type Post = {
   id: number
@@ -9,21 +9,21 @@ type Post = {
   userId: number
 }
 
-export default function TestsPage() {
+export const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([])
   const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    fetch('/posts')
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Failed to fetch posts')
-        }
-        return res.json()
-      })
-      .then((data) => setPosts(data))
-      .catch((err) => setError(err.message))
-  }, [])
+    useEffect(() => {
+      fetch('/posts/sample')
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to fetch posts')
+          }
+          console.log(res)
+          return res.json()
+        })
+        .then((data) => setPosts(data))
+        .catch((err) => setError(err.message))
+    }, [])
 
   if (error) return <div>Error: {error}</div>
   if (posts.length === 0) return <div>Loading...</div>

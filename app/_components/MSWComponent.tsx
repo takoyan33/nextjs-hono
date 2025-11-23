@@ -1,16 +1,29 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-export function MSWComponent() {
+export function MSWComponent({ children }: { children: React.ReactNode }) {
+  const [mswReady, setMswReady] = useState(
+    process.env.NEXT_PUBLIC_API_MOCKING !== 'enabled'
+  )
+
   useEffect(() => {
-    if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
-      // @ts-ignore
-      import('../../tests/mocks').then(({ initMocks }) => {
-        initMocks()
-      })
+    const init = async () => {
+      if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+        // @ts-ignore
+        const { initMocks } = await import('../../tests/mocks')
+        console.log("initMocks")
+        await initMocks()
+        setMswReady(true)
+      } else {
+        setMswReady(true)
+      }
     }
+
+    init()
   }, [])
 
-  return null
+  if (!mswReady) return null
+
+  return <>{children}</>
 }
