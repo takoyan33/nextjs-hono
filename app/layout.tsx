@@ -7,6 +7,8 @@ import { MainNavbar } from "@/components/main-navbar";
 import { MainSidebar } from "@/components/main-sidebar";
 import { ModalsProvider } from "@/components/providers/modals-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { MSWComponent } from "./_components/MSWComponent";
+
 
 export const metadata: Metadata = {
 	title: "Next.js + Prisma",
@@ -21,7 +23,9 @@ export default function RootLayout({
 	return (
 		<html lang="ja" suppressHydrationWarning>
 			<body className="bg-white dark:bg-slate-700">
+				<MSWComponent />
 				<ThemeProvider
+
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
