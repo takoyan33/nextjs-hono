@@ -1,3 +1,5 @@
+import React from "react";
+
 type Product = {
   id: number
   title: string
@@ -18,7 +20,7 @@ export const ProductList = async () => {
         {data.map((product: Product) => (
           <div key={product.id} className="border p-4 rounded shadow">
             <h2 className="text-xl font-semibold">{product.title}</h2>
-            <p className="text-gray-600">{product.price}円</p>
+            <p className="text-gray-600">{product.price}</p>
             <p className="text-xs text-gray-400 mt-2">User ID: {product.userId}</p>
           </div>
         ))}

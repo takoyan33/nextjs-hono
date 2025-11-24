@@ -9,23 +9,20 @@ import { ModalsProvider } from "@/components/providers/modals-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MSWComponent } from "./_components/MSWComponent";
 
-
 export const metadata: Metadata = {
 	title: "Next.js + Prisma",
 	description: "Next.js + Prisma",
 };
 
-console.log(process.env.NEXT_PUBLIC_API_MOCKING)
-
 const isTestEnvironment =
-  process.env.NODE_ENV === "test" || process.env.NEXT_PUBLIC_API_MOCKING === "enabled"
-const mock = !!process.env.NEXT_PUBLIC_API_MOCKING
+	process.env.NODE_ENV === "test" ||
+	process.env.NEXT_PUBLIC_API_MOCKING === "enabled";
+const mock = !!process.env.NEXT_PUBLIC_API_MOCKING;
 if (isTestEnvironment || mock) {
-  const { server } = await import("../tests/mocks/server")
-  console.log("!!!!🟢 MSW Import server!!!!")
-  server.listen()
+	const { server } = await import("../tests/mocks/server");
+	console.log("!!!!🟢 MSW Import server!!!!");
+	server.listen();
 }
-
 
 export default function RootLayout({
 	children,
@@ -37,7 +34,6 @@ export default function RootLayout({
 			<body className="bg-white dark:bg-slate-700">
 				<MSWComponent>
 					<ThemeProvider
-
 						attribute="class"
 						defaultTheme="system"
 						enableSystem
