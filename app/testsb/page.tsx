@@ -1,10 +1,9 @@
-import { ProductList } from "./_components/ProductList"
+import { ProductListContainer } from "./_components/ProductList";
 
 export default function TestsPage() {
-
-  return (
-    <div className="p-4">
-      <ProductList />
-    </div>
-  )
+	return (
+		<div className="p-4">
+			<ProductListContainer />
+		</div>
+	);
 }
