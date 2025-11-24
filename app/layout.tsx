@@ -15,6 +15,18 @@ export const metadata: Metadata = {
 	description: "Next.js + Prisma",
 };
 
+console.log(process.env.NEXT_PUBLIC_API_MOCKING)
+
+const isTestEnvironment =
+  process.env.NODE_ENV === "test" || process.env.NEXT_PUBLIC_API_MOCKING === "enabled"
+const mock = !!process.env.NEXT_PUBLIC_API_MOCKING
+if (isTestEnvironment || mock) {
+  const { server } = await import("../tests/mocks/server")
+  console.log("!!!!🟢 MSW Import server!!!!")
+  server.listen()
+}
+
+
 export default function RootLayout({
 	children,
 }: {

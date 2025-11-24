@@ -13,7 +13,7 @@ export const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([])
   const [error, setError] = useState<string | null>(null)
     useEffect(() => {
-      fetch('/posts/sample')
+      fetch('/posts/')
         .then((res) => {
           if (!res.ok) {
             throw new Error('Failed to fetch posts')
