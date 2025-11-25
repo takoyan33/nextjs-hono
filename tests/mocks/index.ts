@@ -1,12 +1,9 @@
 export async function initMocks() {
-  if (typeof window === 'undefined') {
-    // Server-side mocking (if needed later)
-    // const { server } = await import('./server')
-    // server.listen()
-  } else {
-    const { worker } = await import('./browser')
-    await worker.start({
-      onUnhandledRequest: 'bypass',
-    })
-  }
+	if (typeof window === "undefined") {
+	} else {
+		const { worker } = await import("./browser");
+		await worker.start({
+			onUnhandledRequest: "bypass",
+		});
+	}
 }

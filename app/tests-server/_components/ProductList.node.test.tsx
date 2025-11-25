@@ -5,22 +5,22 @@ import { expect, test } from "vitest";
 import { ProductListPresentation } from "./ProductList";
 
 const mockProducts = [
-	{
-		id: 1,
-		title: "Mocked Product 1",
-		price: 100,
-		userId: 1,
-	},
-	{
-		id: 2,
-		title: "Mocked Product 2",
-		price: 200,
-		userId: 2,
-	},
+  {
+    id: 1,
+    title: "Mocked Product 1",
+    price: 100,
+    userId: 1,
+  },
+  {
+    id: 2,
+    title: "Mocked Product 2",
+    price: 200,
+    userId: 2,
+  },
 ];
 
 test("renders mocked products", () => {
-	render(<ProductListPresentation products={mockProducts} />);
+  render(<ProductListPresentation products={mockProducts} />);
 
-	expect(screen.getByText("100")).toBeInTheDocument();
+  expect(screen.getByText("100")).toBeInTheDocument();
 });
