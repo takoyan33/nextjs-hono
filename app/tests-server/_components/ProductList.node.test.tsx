@@ -9,13 +9,11 @@ const mockProducts = [
     id: 1,
     title: "Mocked Product 1",
     price: 100,
-    userId: 1,
   },
   {
     id: 2,
     title: "Mocked Product 2",
     price: 200,
-    userId: 2,
   },
 ];
 

@@ -2,7 +2,6 @@ import { HttpResponse, http } from "msw";
 
 export const handlers = [
   http.get("*/posts/", () => {
-    console.log("Mocked posts/");
     return HttpResponse.json([
       {
         id: 1,
@@ -20,19 +19,16 @@ export const handlers = [
   }),
 
   http.get("*/products/", () => {
-    console.log("Mocked products/");
     return HttpResponse.json([
       {
         id: 1,
         title: "Mocked Product 1",
         price: 100,
-        userId: 1,
       },
       {
         id: 2,
         title: "Mocked Product 2",
         price: 200,
-        userId: 2,
       },
     ]);
   }),
