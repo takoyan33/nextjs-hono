@@ -10,49 +10,49 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { MSWComponent } from "./_components/MSWComponent";
 
 export const metadata: Metadata = {
-	title: "Next.js + Prisma",
-	description: "Next.js + Prisma",
+  title: "Next.js + Prisma",
+  description: "Next.js + Prisma",
 };
 
 const isTestEnvironment =
-	process.env.NODE_ENV === "test" ||
-	process.env.NEXT_PUBLIC_API_MOCKING === "enabled";
+  process.env.NODE_ENV === "test" ||
+  process.env.NEXT_PUBLIC_API_MOCKING === "enabled";
 const mock = !!process.env.NEXT_PUBLIC_API_MOCKING;
 if (isTestEnvironment || mock) {
-	const { server } = await import("../tests/mocks/server");
-	console.log("!!!!🟢 MSW Import server!!!!");
-	server.listen();
+  const { server } = await import("../tests/mocks/server");
+  console.log("!!!!🟢 MSW Import server!!!!");
+  server.listen();
 }
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang="ja" suppressHydrationWarning>
-			<body className="bg-white dark:bg-slate-700">
-				<MSWComponent>
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="system"
-						enableSystem
-						disableTransitionOnChange
-					>
-						<ClerkProvider>
-							<ModalsProvider />
-							<MainNavbar />
-							<main className="flex h-full w-full relative overflow-hidden overflow-y-auto">
-								<div className="w-[200px] shrink-0 hidden lg:block">
-									<MainSidebar />
-								</div>
-								{children}
-							</main>
-							<Footer />
-						</ClerkProvider>
-					</ThemeProvider>
-				</MSWComponent>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="ja" suppressHydrationWarning>
+      <body className="bg-white dark:bg-slate-700">
+        <MSWComponent>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ClerkProvider>
+              <ModalsProvider />
+              <MainNavbar />
+              <main className="relative flex h-full w-full overflow-hidden overflow-y-auto">
+                <div className="hidden w-[200px] shrink-0 lg:block">
+                  <MainSidebar />
+                </div>
+                {children}
+              </main>
+              <Footer />
+            </ClerkProvider>
+          </ThemeProvider>
+        </MSWComponent>
+      </body>
+    </html>
+  );
 }

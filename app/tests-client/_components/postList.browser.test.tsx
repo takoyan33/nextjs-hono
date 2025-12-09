@@ -1,4 +1,3 @@
-import React from "react";
 import { afterAll, beforeAll, expect, test } from "vitest";
 import { render } from "vitest-browser-react";
 import { worker } from "../../../tests/mocks/browser";

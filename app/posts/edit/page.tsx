@@ -3,34 +3,34 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-	interface Post {
-		id: number;
-		title: string;
-		isCompleted: boolean;
-	}
+  interface Post {
+    id: number;
+    title: string;
+    isCompleted: boolean;
+  }
 
-	const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
-	useEffect(() => {
-		const fetchPosts = async () => {
-			const res = await fetch("/api/posts");
-			const data = await res.json();
-			setPosts(data);
-		};
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await fetch("/api/posts");
+      const data = await res.json();
+      setPosts(data);
+    };
 
-		fetchPosts();
-	}, []);
+    fetchPosts();
+  }, []);
 
-	return (
-		<div>
-			<h2>投稿一覧</h2>
-			{posts?.map((post) => (
-				<li key={post.id}>
-					<h2>{post.title}</h2>
-					<p>Completed: {post.isCompleted ? "Yes" : "No"}</p>
-				</li>
-			))}
-			<Link href="/posts/new">新規投稿</Link>
-		</div>
-	);
+  return (
+    <div>
+      <h2>投稿一覧</h2>
+      {posts?.map((post) => (
+        <li key={post.id}>
+          <h2>{post.title}</h2>
+          <p>Completed: {post.isCompleted ? "Yes" : "No"}</p>
+        </li>
+      ))}
+      <Link href="/posts/new">新規投稿</Link>
+    </div>
+  );
 }

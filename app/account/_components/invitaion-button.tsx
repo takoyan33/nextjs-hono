@@ -5,26 +5,26 @@ import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
-	Dialog,
-	DialogContent,
-	DialogTitle,
-	DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 
 export const InvitationButton = () => {
-	return (
-		<Dialog>
-			<DialogTrigger asChild>
-				<Button variant="outline" className="h-full">
-					<Plus className="w-4 h-4" />
-					<DialogTitle className="hidden md:block ml-2">
-						Invite member
-					</DialogTitle>
-				</Button>
-			</DialogTrigger>
-			<DialogContent className="p-0 bg-transparent border-none max-w-[880px]">
-				<OrganizationProfile />
-			</DialogContent>
-		</Dialog>
-	);
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline" className="h-full">
+          <Plus className="h-4 w-4" />
+          <DialogTitle className="ml-2 hidden md:block">
+            Invite member
+          </DialogTitle>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-[880px] border-none bg-transparent p-0">
+        <OrganizationProfile />
+      </DialogContent>
+    </Dialog>
+  );
 };

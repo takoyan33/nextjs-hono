@@ -4,16 +4,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import type * as z from "zod";
 import { editTodo } from "@/actions/todo-edit";
 import { Button } from "@/components/ui/button";
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Toaster } from "@/components/ui/toaster";
@@ -21,75 +21,75 @@ import { useToast } from "@/hooks/use-toast";
 import { EditTodoSchema } from "@/types/schema";
 
 export const TodoEditForm = ({ todo }: any) => {
-	const { toast } = useToast();
-	const [isPending, startTransition] = useTransition();
-	const router = useRouter();
-	const form = useForm<z.infer<typeof EditTodoSchema>>({
-		resolver: zodResolver(EditTodoSchema),
-		defaultValues: {
-			id: todo.id,
-			title: todo.title,
-			isCompleted: todo.isCompleted,
-		},
-	});
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const form = useForm<z.infer<typeof EditTodoSchema>>({
+    resolver: zodResolver(EditTodoSchema),
+    defaultValues: {
+      id: todo.id,
+      title: todo.title,
+      isCompleted: todo.isCompleted,
+    },
+  });
 
-	const onSubmit = (values: z.infer<typeof EditTodoSchema>) => {
-		console.log("values");
-		console.log(values);
-		startTransition(() => {
-			editTodo(values)
-				.then(() => {
-					toast({
-						title: "編集成功",
-						description: "編集しました",
-					});
-					setTimeout(() => {
-						router.push("/posts");
-					}, 1500);
-				})
-				.catch((data) => {
-					toast({
-						title: "削除失敗",
-						description: data.error,
-						variant: "destructive",
-					});
-				});
-		});
-	};
+  const onSubmit = (values: z.infer<typeof EditTodoSchema>) => {
+    console.log("values");
+    console.log(values);
+    startTransition(() => {
+      editTodo(values)
+        .then(() => {
+          toast({
+            title: "編集成功",
+            description: "編集しました",
+          });
+          setTimeout(() => {
+            router.push("/posts");
+          }, 1500);
+        })
+        .catch((data) => {
+          toast({
+            title: "削除失敗",
+            description: data.error,
+            variant: "destructive",
+          });
+        });
+    });
+  };
 
-	return (
-		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="gap-x-1 w-full max-w-xl m-auto"
-			>
-				<FormField
-					control={form.control}
-					name="title"
-					render={({ field }) => {
-						return (
-							<FormItem className="w-full">
-								<FormLabel>todo名</FormLabel>
-								<FormControl>
-									<Input
-										{...field}
-										disabled={isPending}
-										type="text"
-										placeholder="Enter your todo"
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						);
-					}}
-				/>
-				<div className="flex justify-center my-6">
-					<Button type="submit" disabled={isPending}>
-						編集
-					</Button>
-				</div>
-			</form>
-			<Toaster />
-		</Form>
-	);
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="m-auto w-full max-w-xl gap-x-1"
+      >
+        <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => {
+            return (
+              <FormItem className="w-full">
+                <FormLabel>todo名</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={isPending}
+                    type="text"
+                    placeholder="Enter your todo"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+        <div className="my-6 flex justify-center">
+          <Button type="submit" disabled={isPending}>
+            編集
+          </Button>
+        </div>
+      </form>
+      <Toaster />
+    </Form>
+  );
 };

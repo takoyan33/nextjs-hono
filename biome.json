@@ -16,7 +16,16 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "nursery": { "useSortedClasses": "warn" },
+      "correctness": {
+        "noUnusedImports": "warn",
+        "noUnusedVariables": "warn"
+      },
+      "style": {
+        "noShoutyConstants": "warn",
+        "useNamingConvention": "warn"
+      }
     }
   },
   "javascript": {

@@ -1,5 +1,3 @@
-import React from "react";
-
 type Product = {
   id: number;
   title: string;
@@ -23,8 +21,8 @@ export const ProductListPresentation = ({
   return (
     <div className="space-y-4">
       {products.map((product: Product) => (
-        <div key={product.id} className="border p-4 rounded shadow">
-          <h2 className="text-xl font-semibold">{product.title}</h2>
+        <div key={product.id} className="rounded border p-4 shadow">
+          <h2 className="font-semibold text-xl">{product.title}</h2>
           <p className="text-gray-600">{product.price}</p>
         </div>
       ))}

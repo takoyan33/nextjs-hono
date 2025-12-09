@@ -10,7 +10,6 @@ export function MSWComponent({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const init = async () => {
       if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-        // @ts-ignore
         const { initMocks } = await import("../../tests/mocks");
 
         await initMocks();

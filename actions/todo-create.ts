@@ -1,39 +1,39 @@
 "use server";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import * as z from "zod";
+import type * as z from "zod";
 import { db } from "@/lib/db";
 import { CreateTodoSchema } from "@/types/schema";
 
 export const createTodo = async (values: z.infer<typeof CreateTodoSchema>) => {
-	const { userId, orgId } = await auth();
+  const { userId, orgId } = await auth();
 
-	if (!userId || !orgId) {
-		return {
-			error: "unauthorized",
-		};
-	}
+  if (!userId || !orgId) {
+    return {
+      error: "unauthorized",
+    };
+  }
 
-	const validatedFields = CreateTodoSchema.safeParse(values);
+  const validatedFields = CreateTodoSchema.safeParse(values);
 
-	if (!validatedFields.success) {
-		return {
-			error: "invalid fields",
-		};
-	}
+  if (!validatedFields.success) {
+    return {
+      error: "invalid fields",
+    };
+  }
 
-	const { title } = validatedFields.data!;
+  const { title } = validatedFields.data!;
 
-	await db.todo.create({
-		data: {
-			title,
-			clerkId: userId,
-			orgId,
-		},
-	});
+  await db.todo.create({
+    data: {
+      title,
+      clerkId: userId,
+      orgId,
+    },
+  });
 
-	//Next.js のキャッシュを無効化して再フェッチ
-	revalidatePath("/posts");
+  //Next.js のキャッシュを無効化して再フェッチ
+  revalidatePath("/posts");
 
-	return { success: "New todo created!" };
+  return { success: "New todo created!" };
 };
