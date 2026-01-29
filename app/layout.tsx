@@ -12,6 +12,9 @@ import { MSWComponent } from "./_components/MSWComponent";
 export const metadata: Metadata = {
   title: "Next.js + Prisma",
   description: "Next.js + Prisma",
+  icons: {
+    apple: "/apple-icon.png",
+  },
 };
 
 const isTestEnvironment =
@@ -33,7 +36,6 @@ export default function RootLayout({
     <html lang="ja" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="bg-white dark:bg-slate-700">
         <MSWComponent>
