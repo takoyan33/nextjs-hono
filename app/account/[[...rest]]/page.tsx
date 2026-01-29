@@ -1,19 +1,18 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
+import Link from "next/link";
+import { Sidebar } from "@/app/account/_components/sidebar";
 import { UserProfileModal } from "@/components/modals/user-profile-modal";
-import { auth } from "@clerk/nextjs/server";
-import { getTodoByOrgId } from "@/service/todo-get";
+import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
   CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Sidebar } from "@/app/account/_components/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { getTodoByOrgId } from "@/service/todo-get";
 import { OrgNavbar } from "../_components/org-navbar";
 
 const ProtectedPage = async () => {
@@ -22,9 +21,9 @@ const ProtectedPage = async () => {
   const todos = await getTodoByOrgId(orgId);
 
   return (
-    <div className="p-6 w-full h-full flex gap-x-3">
+    <div className="flex h-full w-full gap-x-3 p-6">
       <Sidebar />
-      <div className="w-full h-full flex flex-col gap-y-3">
+      <div className="flex h-full w-full flex-col gap-y-3">
         <OrgNavbar />
         <Separator />
         <ul className="flex flex-col p-6">
@@ -46,21 +45,21 @@ const ProtectedPage = async () => {
               email={user?.emailAddresses?.[0].emailAddress || ""}
             />
           </li>
-          <h2 className="text-4xl font-bold text-center text-primary mb-8">
+          <h2 className="mb-8 text-center font-bold text-4xl text-primary">
             組織のブログ投稿一覧
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {todos?.map(
               (todo: { id: number; title: string; isCompleted: boolean }) => (
                 <Card
                   key={todo.id}
-                  className="shadow-md hover:shadow-lg transition-shadow duration-300"
+                  className="shadow-md transition-shadow duration-300 hover:shadow-lg"
                 >
                   <CardHeader>
                     <CardTitle>{todo.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-gray-600 text-sm">
                       状態: {todo.isCompleted ? "完了" : "未完了"}
                     </p>
                   </CardContent>
@@ -70,7 +69,7 @@ const ProtectedPage = async () => {
                     </Link>
                   </CardFooter>
                 </Card>
-              )
+              ),
             )}
           </div>
         </ul>

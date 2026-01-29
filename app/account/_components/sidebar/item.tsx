@@ -4,37 +4,37 @@ import { OwnTooltipWrapper } from "@/components/own-tooltip-wrapper";
 import { cn } from "@/lib/utils";
 
 interface ItemProps {
-	id: string;
-	name: string;
-	imageUrl: string;
+  id: string;
+  name: string;
+  imageUrl: string;
 }
 
 export const Item = ({ id, name, imageUrl }: ItemProps) => {
-	const { organization } = useOrganization();
-	const { setActive } = useOrganizationList();
+  const { organization } = useOrganization();
+  const { setActive } = useOrganizationList();
 
-	const isActive = organization?.id === id;
+  const isActive = organization?.id === id;
 
-	const onClick = () => {
-		if (!setActive) return;
+  const onClick = () => {
+    if (!setActive) return;
 
-		setActive({ organization: id });
-	};
+    setActive({ organization: id });
+  };
 
-	return (
-		<li className="aspect-square relative">
-			<OwnTooltipWrapper label={name} side="right" sideOffset={10}>
-				<Image
-					src={imageUrl}
-					alt={name}
-					fill
-					onClick={onClick}
-					className={cn(
-						"rounded-md cursor-pointer opacity-75 hover:opacity-100 transition",
-						isActive && "opacity-100",
-					)}
-				/>
-			</OwnTooltipWrapper>
-		</li>
-	);
+  return (
+    <li className="relative aspect-square">
+      <OwnTooltipWrapper label={name} side="right" sideOffset={10}>
+        <Image
+          src={imageUrl}
+          alt={name}
+          fill
+          onClick={onClick}
+          className={cn(
+            "cursor-pointer rounded-md opacity-75 transition hover:opacity-100",
+            isActive && "opacity-100",
+          )}
+        />
+      </OwnTooltipWrapper>
+    </li>
+  );
 };

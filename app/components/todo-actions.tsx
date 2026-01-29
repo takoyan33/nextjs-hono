@@ -10,69 +10,69 @@ import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 
 interface TodoActionsProps {
-	todoId: string;
-	isCompleted: boolean;
+  todoId: string;
+  isCompleted: boolean;
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const TodoActions = ({ todoId, isCompleted }: TodoActionsProps) => {
-	const { toast } = useToast();
-	const router = useRouter();
-	const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
-	const onUpdate = () => {
-		startTransition(() => {
-			updateTodo({ id: todoId, isCompleted: isCompleted })
-				.then(() => {
-					toast({
-						title: "編集成功",
-						description: "投稿を編集しました",
-					});
-				})
-				.catch((data) => {
-					if (data.error) {
-						toast({
-							title: "編集失敗",
-							description: data.error,
-							variant: "destructive",
-						});
-					}
-				});
-		});
-	};
+  const onUpdate = () => {
+    startTransition(() => {
+      updateTodo({ id: todoId, isCompleted: isCompleted })
+        .then(() => {
+          toast({
+            title: "編集成功",
+            description: "投稿を編集しました",
+          });
+        })
+        .catch((data) => {
+          if (data.error) {
+            toast({
+              title: "編集失敗",
+              description: data.error,
+              variant: "destructive",
+            });
+          }
+        });
+    });
+  };
 
-	const onDelete = () => {
-		startTransition(() => {
-			deleteTodo({ id: todoId })
-				.then(() => {
-					toast({
-						title: "削除成功",
-						description: "投稿を削除しました",
-					});
-					router.push("/posts");
-				})
-				.catch((data) => {
-					if (data.error) {
-						toast({
-							title: "削除失敗",
-							description: data.error,
-							variant: "destructive",
-						});
-					}
-				});
-		});
-	};
-	return (
-		<div className="flex item-center gap-x-2">
-			<Button variant="secondary" disabled={isPending} onClick={onUpdate}>
-				{isCompleted ? "未完了" : "完了"}
-			</Button>
-			<Button variant="destructive" disabled={isPending} onClick={onDelete}>
-				削除
-			</Button>
-			<Link href={`/posts/edit/${todoId}`}>
-				<Button disabled={isPending}>編集</Button>
-			</Link>
-			<Toaster />
-		</div>
-	);
+  const onDelete = () => {
+    startTransition(() => {
+      deleteTodo({ id: todoId })
+        .then(() => {
+          toast({
+            title: "削除成功",
+            description: "投稿を削除しました",
+          });
+          router.push("/posts");
+        })
+        .catch((data) => {
+          if (data.error) {
+            toast({
+              title: "削除失敗",
+              description: data.error,
+              variant: "destructive",
+            });
+          }
+        });
+    });
+  };
+  return (
+    <div className="item-center flex gap-x-2">
+      <Button variant="secondary" disabled={isPending} onClick={onUpdate}>
+        {isCompleted ? "未完了" : "完了"}
+      </Button>
+      <Button variant="destructive" disabled={isPending} onClick={onDelete}>
+        削除
+      </Button>
+      <Link href={`/posts/edit/${todoId}`}>
+        <Button disabled={isPending}>編集</Button>
+      </Link>
+      <Toaster />
+    </div>
+  );
 };

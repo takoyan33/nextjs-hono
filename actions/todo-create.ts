@@ -1,7 +1,7 @@
 "use server";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import * as z from "zod";
+import type * as z from "zod";
 import { db } from "@/lib/db";
 import { CreateTodoSchema } from "@/types/schema";
 
@@ -28,10 +28,11 @@ export const createTodo = async (values: z.infer<typeof CreateTodoSchema>) => {
     data: {
       title,
       clerkId: userId,
-      orgId
+      orgId,
     },
   });
 
+  //Next.js のキャッシュを無効化して再フェッチ
   revalidatePath("/posts");
 
   return { success: "New todo created!" };

@@ -3,7 +3,7 @@ import { InvitationButton } from "@/app/account/_components/invitaion-button";
 
 export const OrgNavbar = () => {
   return (
-    <div className="w-full flex items-center justify-between gap-x-2">
+    <div className="flex w-full items-center justify-between gap-x-2">
       <OrganizationSwitcher
         hidePersonal
         appearance={{

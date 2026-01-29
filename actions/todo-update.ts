@@ -1,31 +1,32 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import * as z from "zod";
+import type * as z from "zod";
 import { db } from "@/lib/db";
 import { UpdateTodoSchema } from "@/types/schema";
 
 export const updateTodo = async (values: z.infer<typeof UpdateTodoSchema>) => {
-	const validatedFields = UpdateTodoSchema.safeParse(values);
+  const validatedFields = UpdateTodoSchema.safeParse(values);
 
-	if (!validatedFields.success) {
-		return {
-			error: "invalid fields",
-		};
-	}
+  if (!validatedFields.success) {
+    return {
+      error: "invalid fields",
+    };
+  }
 
-	const { id, isCompleted } = validatedFields.data;
+  const { id, isCompleted } = validatedFields.data;
 
-	await db.todo.update({
-		where: {
-			id,
-		},
-		data: {
-			isCompleted: !isCompleted,
-		},
-	});
+  await db.todo.update({
+    where: {
+      id,
+    },
+    data: {
+      isCompleted: !isCompleted,
+    },
+  });
 
-	revalidatePath("/posts");
+  //Next.js のキャッシュを無効化して再フェッチ
+  revalidatePath("/posts");
 
-	return { success: "Todo Updated!" };
+  return { success: "Todo Updated!" };
 };
