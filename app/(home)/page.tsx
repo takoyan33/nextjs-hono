@@ -18,7 +18,7 @@ export default function Home() {
           </Button>
         </Link>
         <Link href="/sign-up/">
-          <Button className="px-6 py-3 text-lg" size="lg" variant="primary">
+          <Button className="px-6 py-3 text-lg" size="lg" variant="default">
             ユーザー登録
           </Button>
         </Link>

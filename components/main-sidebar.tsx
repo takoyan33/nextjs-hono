@@ -85,7 +85,7 @@ export const MainSidebar = () => {
             <Button
               onClick={onOpen}
               className="flex w-full items-center gap-x-2"
-              variant="primary"
+              variant="default"
             >
               <Copy className="h-4 w-4" />
               Copy Email
