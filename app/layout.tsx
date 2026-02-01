@@ -12,9 +12,6 @@ import { MSWComponent } from "./_components/MSWComponent";
 export const metadata: Metadata = {
   title: "Next.js + Prisma",
   description: "Next.js + Prisma",
-  icons: {
-    apple: "/apple-icon.png",
-  },
 };
 
 const isTestEnvironment =
